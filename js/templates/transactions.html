@@ -1,0 +1,40 @@
+<div class="transactions container">
+	<div class="row">
+		<div class="col">
+			<h2>Transactions</h2>
+		</div>
+		<div class="col">
+			<div class="form-group row">
+				<label for="transactionFilter" class="col-sm-4 col-form-label">Filter: </label>
+				<div class="col-sm-8">
+					<input
+						type="text"
+						class="form-control"
+						name="transactionFilter"
+						ng-model="transactionFilter"
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		 <table class="table table-bordered table-striped table-responsive">
+			 <thead>
+				 <th ng-click="sortBy('date')">Date</th>
+				 <th ng-click="sortBy('ticker')">Symbol</th>
+				 <th>Type</th>
+				 <th>Quantity</th>
+				 <th>Price</th>
+			 </thead>
+			 <tbody>
+				 <tr ng-repeat="transaction in transactions | filter : transactionFilter | orderBy : transactionField">
+					 <td>{{ transaction.date | date : 'shortDate' }}</td>
+					 <td>{{ transaction.ticker }}</td>
+					 <td>{{ transaction.type }}</td>
+					 <td>{{ transaction.quantity }}</td>
+					 <td>{{ transaction.price }}</td>
+				 </tr>
+			 </tbody>
+		 </table>
+	</div>
+</div>

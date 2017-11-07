@@ -1,0 +1,42 @@
+<div class="datepicker">
+
+	<div>
+		<!-- <span>Selected Date: {{stocks[0].data[datePicker].Date}}</span> -->
+		<span>Selected Date: {{ dates[datePicker] | date : shortDate }}</span>
+	</div>
+	
+	<span class="recent-date">{{ dates[0] | date : shortDate }}</span>
+	<span class="farthest-date">{{ dates[dates.length - 1] | date : shortDate }}</span>
+	
+	<div class="card">
+		<div class="card-body">
+			<input
+				type="range"
+				name="datePicker"
+				id="datePicker"
+				min="0"
+				max="{{ dates.length - 1 }}"
+				ng-model="datePicker"
+				ng-change="onDatePickerChange()"
+			>
+		</div>
+	</div>
+	
+</div>
+
+<style>
+	.datepicker {
+		width: 100%;
+		position: relative;
+		margin-bottom: 20px;
+	}
+
+	input {
+		width: 100%;
+	}
+
+	.farthest-date{
+		position: absolute;
+		right: 0;
+	}
+</style>

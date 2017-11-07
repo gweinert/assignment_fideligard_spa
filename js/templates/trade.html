@@ -1,0 +1,71 @@
+<div class="trade">
+	<div class="container">
+		<div class="row">
+			<h2>Trade</h2>
+		</div>
+		<div class="row">
+			<div class="col">
+				<form name="tradeForm" ng-submit="submit()">
+					
+					<div class="form-group row">
+						<label for="ticker" class="col-sm-4 col-form-label">Symbol: </label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="ticker" ng-model="formData.ticker">
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="tradeOption" class="col-sm-4 col-form-label">Buy/Sell: </label>
+						<div class="col-sm-8">
+							<select class="form-control" name="tradeOption" ng-model="formData.tradeOption">
+								<option value="Buy">Buy</option>
+								<option value="Sell">Sell</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="quantity" class="col-sm-4 col-form-label">Quantity: </label>
+						<div class="col-sm-8">
+							<input type="number" class="form-control" name="quantity" ng-model="formData.quantity">
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="date" class="col-sm-4 col-form-label">Date: </label>
+						<div class="col-sm-8">
+							<input
+								type="date"
+								class="form-control"
+								name="date"
+								ng-model="formData.date"
+								ng-change="onDateChange()"
+							>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<span class="col-sm-4">Price: </span>
+						<span class="col-sm-8">{{ stock.data.Close | currency }}</span>
+					</div>
+
+					<div class="form-group row">
+						<span class="col-sm-4">Cost: </span>
+						<span class="col-sm-8">{{ stock.data.Close * formData.quantity | currency}}</span>
+					</div>
+
+					<button type="submit" class="btn btn-primary btn-block">Place Order!</button>
+					
+				</form>
+			</div>
+			<div class="col">
+				<h3>Cash Available:</h3>
+				<h3>{{ balance | currency }}</h3>
+				<h3>Order Status:</h3>
+				<h3 ng-show="isValid()" class="text-success">Valid</h3>
+				<h3 ng-hide="isValid()" class="text-danger">Invalid</h3>
+				
+			</div>
+		</div>
+	</div>
+</div>

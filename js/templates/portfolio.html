@@ -1,0 +1,35 @@
+<div class="portfolio container">
+	<div class="row">
+		<h2>Portfolio</h2>
+	</div>
+	<div class="row">
+		<table class="table table-bordered table-striped table-responsive">
+			<thead>
+				<th>Symbol</th>
+				<th>Quantity</th>
+				<th>Cost Basis</th>
+				<th>Current Value</th>
+				<th>Profit/Loss</th>
+				<th>Current Price</th>
+				<th>1d</th>
+				<th>7d</th>
+				<th>30d</th>
+				<th>Trade?</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="stockTransaction in transactions">
+					<td>{{ stockTransaction.ticker }}</td>
+					<td>{{ stockTransaction.quantity }}</td>
+					<td>{{ (stockTransaction.quantity * stockTransaction.price) | currency }}</td>
+					<td>{{ (stockTransaction.quantity * stocks[stockTransaction.ticker].data.Close) | currency }}</td>
+					<td>{{ (stockTransaction.quantity * stocks[stockTransaction.ticker].data.Close ) - (stockTransaction.quantity * stockTransaction.price) | currency }}</td>
+					<td>{{ stocks[stockTransaction.ticker].data.Close | currency }}</td>
+					<td>{{ stocks[stockTransaction.ticker].data.oneDay | currency }}</td>
+					<td>{{ stocks[stockTransaction.ticker].data.sevenDay | currency }}</td>
+					<td>{{ stocks[stockTransaction.ticker].data.thirtyDay | currency }}</td>
+					<td><a ui-sref="dashboard.trade({ ticker: stockTransaction.ticker })">trade</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

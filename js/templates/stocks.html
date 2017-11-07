@@ -1,0 +1,52 @@
+<div class="stocks card">
+	<div class="card-body">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<h3>Stocks</h3>
+				</div>
+				<div class="col-sm-8">
+					<div class="form-group row">
+						<label for="tickerFilter" class="col-sm-4 col-form-label text-right">Filter: </label>
+						<div class="col-sm-8">
+							<input
+								type="text"
+								name="tickerFilter"
+								class="form-control"
+								ng-model="tickerFilter"
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="stock-inner">
+			<table class="table table-bordered table-striped table-responsive">
+				<thead>
+					<th ng-click="sortStocksBy('ticker')">Symbol</th>
+					<th ng-click="sortStocksBy('data.Close')">Price</th>
+					<th>1d</th>
+					<th>7d</th>
+					<th>30d</th>
+					<th>Trade?</th>
+				</thead>
+				<tbody>
+					<!-- <tr 
+						ng-repeat="stock in stocks | filter : { ticker: tickerFilter } | orderBy : stockSortVal : isReverse"
+						stock-info="stock"
+						active-date="activeDate"
+					></tr> -->
+					<tr ng-repeat="stock in stocks | filter : { ticker: tickerFilter } | orderBy : stockSortVal : isReverse">
+						<td>{{ stock.ticker }}</td>
+						<td>{{ stock.data.Close | currency }}</td>
+						<td>{{ stock.data.oneDay | currency }}</td>
+						<td>{{ stock.data.sevenDay | currency }}</td>
+						<td>{{ stock.data.thirtyDay | currency }}</td>
+						<td><a ui-sref="dashboard.trade({ ticker: stock.ticker })">trade</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

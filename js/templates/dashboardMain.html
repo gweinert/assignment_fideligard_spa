@@ -1,0 +1,10 @@
+<div class="dashboard-main card">
+	<div class="card-body">
+		<select class="float-right" name="nav" ng-change="onSelectChange()" ng-model="nav">
+			<option value="dashboard.trade">Trade</option>
+			<option value="dashboard.transactions">Transactions</option>
+			<option value="dashboard.portfolio">Portfolio</option>			
+		</select>
+		<ui-view></ui-view>
+	</div>
+</div>
